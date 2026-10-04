@@ -1,0 +1,65 @@
+WEEK 4 - PERFORMANCE BENCHMARK RESULTS
+============================================================
+Correctness: optimized output == baseline output -> PASS
+
+--- Whole-App Wall Clock (best of 3) ---
+Baseline : 3.8829 sec
+Optimized: 0.0053 sec
+Speedup  : 733.8x faster (99.9% time reduced)
+
+--- timeit per function (best of 3) ---
+function                 baseline  optimized  speedup
+find_duplicates           0.8257s    0.0010s   851.1x
+total_amount              2.1437s    0.0004s  5341.9x
+region_summary            0.0016s    0.0020s     0.8x
+top_customers             0.9256s    0.0027s   345.3x
+
+============================================================
+cProfile - BASELINE original_app.py
+============================================================
+         260959 function calls in 11.741 seconds
+
+   Ordered by: cumulative time
+   List reduced from 28 to 12 due to restriction <12>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001   11.741   11.741 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\original_app.py:135(main)
+        1    5.256    5.256    5.256    5.256 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\original_app.py:56(total_amount)
+        1    3.696    3.696    3.717    3.717 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\original_app.py:87(top_customers)
+        1    2.658    2.658    2.661    2.661 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\original_app.py:37(find_duplicates)
+        1    0.020    0.020    0.101    0.101 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\original_app.py:18(generate_data)
+    24000    0.011    0.000    0.070    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:358(randint)
+    24000    0.028    0.000    0.060    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:284(randrange)
+    24000    0.018    0.000    0.024    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:235(_randbelow_with_getrandbits)
+     8814    0.014    0.000    0.014    0.000 {built-in method builtins.len}
+    27718    0.011    0.000    0.011    0.000 {method 'append' of 'list' objects}
+    72000    0.007    0.000    0.007    0.000 {built-in method _operator.index}
+     8000    0.004    0.000    0.005    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:520(uniform)
+
+
+
+============================================================
+cProfile - OPTIMIZED optimized_app.py
+============================================================
+         255953 function calls in 0.267 seconds
+
+   Ordered by: cumulative time
+   List reduced from 44 to 12 due to restriction <12>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.267    0.267 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\optimized_app.py:100(main)
+        1    0.052    0.052    0.228    0.228 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\optimized_app.py:22(generate_data)
+    24000    0.022    0.000    0.145    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:358(randint)
+    24000    0.055    0.000    0.123    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:284(randrange)
+    24000    0.036    0.000    0.053    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:235(_randbelow_with_getrandbits)
+     8015    0.015    0.000    0.015    0.000 {built-in method builtins.round}
+    72000    0.015    0.000    0.015    0.000 {built-in method _operator.index}
+    32381    0.013    0.000    0.013    0.000 {method 'getrandbits' of '_random.Random' objects}
+     8000    0.011    0.000    0.012    0.000 C:\Users\tharun\AppData\Local\Programs\Python\Python311\Lib\random.py:520(uniform)
+        1    0.007    0.007    0.011    0.011 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\optimized_app.py:71(top_customers)
+        1    0.010    0.010    0.010    0.010 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\optimized_app.py:60(region_summary)
+        1    0.007    0.007    0.010    0.010 C:\Users\tharun\OneDrive\Documents\Default Project\Week4_Optimization\optimized_app.py:40(find_duplicates)
+
+
+
+Done. See report for analysis.
